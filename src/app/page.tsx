@@ -1,9 +1,10 @@
-import { Button } from "@/components/ui/button";
+import AuthScreen from "@/features/auth/components/auth-screen";
 
 export default function Home() {
   return (
-    <div className="text-rose-500 font-blod text-2xl">
-      <Button variant="slack" >Click me</Button>
+    <div className="bg-[#5c3b58] h-full w-full">
+
+      <AuthScreen />
     </div>
   );
 }
