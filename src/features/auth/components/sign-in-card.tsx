@@ -25,9 +25,11 @@ const SignInCard = ({ setState }: SignInCardProps) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [pending, setPending] = useState(false)
 
-  const handleProviderSignIn = (value: "github" | "google") => {
-    signIn(value);
+  const onProviderSignIn = (value: "github" | "google") => {
+    setPending(true);
+    signIn(value).finally(() => setPending(false));
   }
 
 
@@ -44,7 +46,7 @@ const SignInCard = ({ setState }: SignInCardProps) => {
       <CardContent className="space-y-5 px-0 pb-0">
         <form className='space-y-2.5'>
           <Input
-            disabled={false}
+            disabled={pending}
             type='email'
             placeholder='Email'
             value={email}
@@ -52,7 +54,7 @@ const SignInCard = ({ setState }: SignInCardProps) => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <Input
-            disabled={false}
+            disabled={pending}
             type='password'
             placeholder='Password'
             value={password}
@@ -63,7 +65,7 @@ const SignInCard = ({ setState }: SignInCardProps) => {
             type='submit'
             className='w-full'
             size="lg"
-            disabled={false}
+            disabled={pending}
           >
             Continue
           </Button>
@@ -71,8 +73,8 @@ const SignInCard = ({ setState }: SignInCardProps) => {
         <Separator />
           <div className="flex flex-col gap-y-2.5">
             <Button
-              disabled={false}
-              onClick={() => {}}
+              disabled={pending}
+              onClick={()=> onProviderSignIn("google")}
               variant="outline"
               size="lg"
               className="w-full relative"
@@ -83,11 +85,11 @@ const SignInCard = ({ setState }: SignInCardProps) => {
               Continue with Google
             </Button>
             <Button
-              disabled={false}
+              disabled={pending}
               variant="outline"
               size="lg"
               className="w-full relative"
-              onClick={()=> handleProviderSignIn("github")}
+              onClick={()=> onProviderSignIn("github")}
             >
               <FaGithub 
                 className="absolute top-3 left-2.5 size-5" 
