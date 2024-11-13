@@ -1,5 +1,7 @@
 
 import React, { useState } from 'react'
+import { useAuthActions } from "@convex-dev/auth/react";
+
 import { 
   Card, 
   CardHeader, 
@@ -19,13 +21,15 @@ interface SignInCardProps {
 }
 
 const SignInCard = ({ setState }: SignInCardProps) => {
+  const { signIn } = useAuthActions();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(email, password);
+  const handleProviderSignIn = (value: "github" | "google") => {
+    signIn(value);
   }
+
 
   return (
     <Card className="h-full w-full p-8 rounded-xl">
@@ -38,7 +42,7 @@ const SignInCard = ({ setState }: SignInCardProps) => {
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-5 px-0 pb-0">
-        <form onSubmit={handleSubmit} className='space-y-2.5'>
+        <form className='space-y-2.5'>
           <Input
             disabled={false}
             type='email'
@@ -80,10 +84,10 @@ const SignInCard = ({ setState }: SignInCardProps) => {
             </Button>
             <Button
               disabled={false}
-              onClick={() => {}}
               variant="outline"
               size="lg"
               className="w-full relative"
+              onClick={()=> handleProviderSignIn("github")}
             >
               <FaGithub 
                 className="absolute top-3 left-2.5 size-5" 
