@@ -10,6 +10,37 @@ const generateCode = () => {
   return code;
 }
 
+export const newJoinCode = mutation({
+  args: {
+    workspaceId: v.id("workspaces"),
+  },
+  handler: async (ctx, args) => {
+    const userId = await auth.getUserId(ctx);
+
+    if (!userId) {
+      throw new Error("Unauthorized");
+    }
+
+    const member = await ctx.db
+      .query("members")
+      .withIndex("by_workspace_id_user_id", (q) =>
+        q.eq("workspaceId", args.workspaceId).eq("userId", userId),)
+      .unique();
+
+    if (!member || member.role !== "admin") {
+      throw new Error("Unauthorized");
+    }
+
+    const joinCode = generateCode();
+
+    await ctx.db.patch(args.workspaceId, {
+      joinCode,
+    });
+
+    return args.workspaceId;
+  }
+})
+
 export const create = mutation({
   args: {
     name: v.string(),
@@ -111,7 +142,7 @@ export const update = mutation({
       .withIndex("by_workspace_id_user_id", (q) => q.eq("workspaceId", args.id).eq("userId", userId),)
       .unique();
 
-    if(!member || member.role !== "admin" ){
+    if (!member || member.role !== "admin") {
       throw new Error("Unauthorized");
     }
 
@@ -139,7 +170,7 @@ export const remove = mutation({
       .withIndex("by_workspace_id_user_id", (q) => q.eq("workspaceId", args.id).eq("userId", userId),)
       .unique();
 
-    if(!member || member.role !== "admin" ){
+    if (!member || member.role !== "admin") {
       throw new Error("Unauthorized");
     }
 
@@ -150,7 +181,7 @@ export const remove = mutation({
         .collect(),
     ])
 
-    for (const member of members){
+    for (const member of members) {
       await ctx.db.delete(member._id)
     }
 
