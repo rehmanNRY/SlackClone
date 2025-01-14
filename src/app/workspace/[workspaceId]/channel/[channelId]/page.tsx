@@ -6,10 +6,18 @@ import { Loader, TriangleAlert } from 'lucide-react';
 import React from 'react'
 import Header from './header';
 import ChatInput from './chat-input';
+import { useGetMessages } from '@/features/messages/api/use-get-messages';
 
 const ChannelIdPage = () => {
   const channelId = useChannelId();
+  
+  const { results } = useGetMessages({
+    channelId
+  });
+
   const { data: channel, isLoading: channelLoading } = useGetChannel({id: channelId});
+
+  console.log(results)
 
   if(channelLoading){
     return (
@@ -33,7 +41,9 @@ const ChannelIdPage = () => {
   return (
     <div className='flex flex-col h-full'>
       <Header title={channel.name} />
-      <div className="flex-1" />
+      <div className="flex-1">
+        {JSON.stringify(results)}
+      </div>
       <ChatInput placeholder={`Message # ${channel.name}`} />
     </div>
   )
