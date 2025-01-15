@@ -151,7 +151,7 @@ export const get = query({
                 count: number;
                 memberIds: Id<"members">[];
               })[]
-            )
+            );
             const reactionsWithoutMemberIdProperty = dedupedReactions.map(
               ({memberId, ...rest }) => rest,
             );
