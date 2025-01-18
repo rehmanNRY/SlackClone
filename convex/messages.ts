@@ -2,7 +2,6 @@ import { v } from "convex/values";
 import { mutation, QueryCtx, query } from "./_generated/server";
 import { auth } from "./auth";
 import { Doc, Id } from "./_generated/dataModel";
-import { count } from "console";
 import { paginationOptsValidator } from "convex/server";
 
 const populateThread = async (ctx: QueryCtx, messageId: Id<"messages">) => {
