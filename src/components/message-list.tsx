@@ -27,7 +27,6 @@ const formatDateLabel = (dateStr: string) => {
   if (isToday(date)) return "Today";
   if (isYesterday(date)) return "Yesterday";
   return format(date, "EEEE, MMMM d");
-
 }
 
 export const MessageList = ({
@@ -57,6 +56,7 @@ export const MessageList = ({
     },
     {} as Record<string, typeof data>
   )
+  
   return (
     <div className='flex-1 flex flex-col-reverse pb-4 overflow-y-auto messages-scrollbar'>
       {Object.entries(groupedMessages || {}).map(([dateKey, messages]) => (
