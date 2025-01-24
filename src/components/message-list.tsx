@@ -7,6 +7,7 @@ import { Id } from '../../convex/_generated/dataModel';
 import { useWorkspaceId } from '@/hooks/use-workspace-id';
 import { useCurrentMember } from '@/features/members/api/use-current-member';
 import { Loader } from 'lucide-react';
+import { ConversationHero } from './conversation-hero';
 
 const TIME_THRESHOLD = 5;
 
@@ -56,7 +57,7 @@ export const MessageList = ({
     },
     {} as Record<string, typeof data>
   )
-  
+
   return (
     <div className='flex-1 flex flex-col-reverse pb-4 overflow-y-auto messages-scrollbar'>
       {Object.entries(groupedMessages || {}).map(([dateKey, messages]) => (
@@ -130,6 +131,12 @@ export const MessageList = ({
         <ChannelHero
           name={channelName}
           creationTime={channelCreationTime}
+        />
+      )}
+      {variant === "conversation" && (
+        <ConversationHero
+          name={memberName}
+          image={memberImage}
         />
       )}
     </div>
