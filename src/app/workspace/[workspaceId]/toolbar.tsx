@@ -14,6 +14,7 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command"
+import { DialogTitle } from "@/components/ui/dialog" // Add DialogTitle
 import { useGetChannels } from '@/features/channels/api/use-get-channels'
 import { useGetMembers } from '@/features/members/api/use-get-members'
 import Link from 'next/link'
@@ -51,13 +52,15 @@ const Toolbar = () => {
           <span className='text-white text-xs'>Search {data?.name}</span>
         </Button>
 
-        <CommandDialog open={open} onOpenChange={setOpen} >
+        <CommandDialog open={open} onOpenChange={setOpen}>
+          {/* Add a DialogTitle here */}
+          <DialogTitle className='p-3' >Search Workspace</DialogTitle>
           <CommandInput placeholder="Search..." />
           <CommandList>
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup heading="Channels">
               {channels?.map((channel) => (
-                <CommandItem onSelect={() => onChannelClick(channel._id)} >
+                <CommandItem key={channel._id} onSelect={() => onChannelClick(channel._id)}>
                   {channel.name}
                 </CommandItem>
               ))}
@@ -65,7 +68,7 @@ const Toolbar = () => {
             <CommandSeparator />
             <CommandGroup heading="Members">
               {members?.map((member) => (
-                <CommandItem onSelect={() => onMemberClick(member._id)}>
+                <CommandItem key={member._id} onSelect={() => onMemberClick(member._id)}>
                   {member.user.name}
                 </CommandItem>
               ))}
