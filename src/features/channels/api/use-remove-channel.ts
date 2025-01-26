@@ -1,7 +1,7 @@
 import { useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { useCallback, useMemo, useState } from "react";
-import { Doc, Id } from "../../../../convex/_generated/dataModel";
+import { Id } from "../../../../convex/_generated/dataModel";
 
 type RequestType = {
   id: Id<"channels">,

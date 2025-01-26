@@ -3,10 +3,8 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog"
 import { useNewJoinCode } from "@/features/workspaces/api/use-new-join-code";
 import { useConfirm } from "@/hooks/use-confirm";

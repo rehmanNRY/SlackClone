@@ -26,6 +26,7 @@ const MemberIdPage = () => {
       },
       onError(error){
         toast.error("Failed to create or get conversation")
+        console.error(error)
       }
     })
   }, [memberId, workspaceId, mutate])

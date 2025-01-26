@@ -3,11 +3,6 @@ import { Button } from "./ui/button";
 import Hint from "./hint";
 import { EmojiPopover } from "./emoji-popover";
 
-// Define the type for the emoji parameter
-interface Emoji {
-  native: string; // Adjust this based on the actual structure of your emoji object
-}
-
 interface ToolbarProps {
   isAuthor: boolean;
   isPending: boolean;

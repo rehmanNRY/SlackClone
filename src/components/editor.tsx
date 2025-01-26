@@ -4,7 +4,7 @@ import React, { useRef, useEffect, MutableRefObject, useLayoutEffect, useState }
 import "quill/dist/quill.snow.css";
 import { Button } from './ui/button';
 import { PiTextAa } from 'react-icons/pi';
-import { ImageIcon, Keyboard, Smile, XIcon } from 'lucide-react';
+import { ImageIcon, Smile, XIcon } from 'lucide-react';
 import { MdSend } from 'react-icons/md';
 import Hint from './hint';
 import { cn } from '@/lib/utils';
@@ -48,7 +48,7 @@ const Editor = ({
   const imageElementRef = useRef<HTMLInputElement>(null);
 
   useLayoutEffect(() => {
-    submitRef.current == onSubmit;
+    submitRef.current = onSubmit;
     placeholderRef.current = placeholder;
     defaultValueRef.current = defaultValue;
     disabledRef.current = disabled;

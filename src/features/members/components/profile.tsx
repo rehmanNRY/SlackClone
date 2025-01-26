@@ -16,20 +16,10 @@ import { useRouter } from "next/navigation";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-
 
 interface ProfileProps {
   memberId: Id<"members">;
@@ -65,8 +55,8 @@ const Profile = ({
     workspaceId
   });
 
-  const { mutate: updateMember, isPending: isUpdatingMember } = useUpdateMember();
-  const { mutate: removeMember, isPending: isRemovingMember } = useRemoveMember();
+  const { mutate: updateMember } = useUpdateMember();
+  const { mutate: removeMember } = useRemoveMember();
 
   const onRemove = async () => {
     const ok = await confirmRemove();
@@ -78,7 +68,7 @@ const Profile = ({
         toast.success("Member removed successfully!");
         onClose(); // Close the profile after successful removal
       },
-      onError: (error) => {
+      onError: () => {
         toast.error(`Failed to remove member`);
       },
     });
@@ -95,7 +85,7 @@ const Profile = ({
         toast.success("You left the workspace");
         onClose(); // Close the profile after successful removal
       },
-      onError: (error) => {
+      onError: () => {
         toast.error(`Failed to leave the workspace`);
       },
     });
@@ -111,7 +101,7 @@ const Profile = ({
         toast.success("Role changed");
         onClose(); // Close the profile after successful removal
       },
-      onError: (error) => {
+      onError: () => {
         toast.error(`Failed to change role`);
       },
     });
