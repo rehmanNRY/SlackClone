@@ -13,6 +13,7 @@ import { useConfirm } from "@/hooks/use-confirm";
 import { useToggleReaction } from "@/features/reactions/api/use-toggle-reaction";
 import Reactions from "./reactions";
 import { usePanel } from "@/hooks/use-pannel";
+import ThreadBar from "./thread-bar";
 
 const Renderer = dynamic(() => import("@/components/renderer"), { ssr: false });
 const Editor = dynamic(() => import("@/components/editor"), { ssr: false });;
@@ -38,6 +39,7 @@ interface MessageProps {
   setEditingId: (id: Id<"messages"> | null) => void;
   hideThreadButton?: boolean;
   threadCount?: number;
+  threadName?: string; 
   threadImage?: string;
   threadTimestamp?: number;
 }
@@ -66,6 +68,7 @@ export const Message = ({
   hideThreadButton,
   threadCount,
   threadImage,
+  threadName,
   threadTimestamp,
 }: MessageProps) => {
 
@@ -98,8 +101,8 @@ export const Message = ({
     removeMessage({ id }, {
       onSuccess: () => {
         toast.success("Message deleted");
-        
-        if(parentMessageId === id ){
+
+        if (parentMessageId === id) {
           onClose();
         }
 
@@ -159,6 +162,13 @@ export const Message = ({
                 <Reactions
                   data={reactions}
                   onChange={handleReaction}
+                />
+                <ThreadBar
+                  count={threadCount}
+                  image={threadImage}
+                  name={threadName}
+                  timeStamp={threadTimestamp}
+                  onClick={()=> onOpenMessage(id)}
                 />
               </div>
             )}
@@ -234,6 +244,13 @@ export const Message = ({
               <Reactions
                 data={reactions}
                 onChange={handleReaction}
+              />
+              <ThreadBar
+                count={threadCount}
+                image={threadImage}
+                name={threadName}
+                timeStamp={threadTimestamp}
+                onClick={()=> onOpenMessage(id)}
               />
             </div>
           )}
