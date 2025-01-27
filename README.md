@@ -1,83 +1,126 @@
 # Slack Clone
 
-A Slack clone built using Next.js 15, React 19, and Tailwind CSS. This project leverages Convex for real-time data handling and various Radix UI components for a modern and responsive UI.
+A Slack-like real-time messaging platform built using **Next.js** and **Convex**. This project is a feature-rich and interactive clone of the Slack platform, providing seamless team communication capabilities.
 
-## Features
-- **Authentication**: Powered by @auth/core and @convex-dev/auth.
-- **Real-time Updates**: Uses Convex for real-time data sync.
-- **Responsive UI**: Built with Tailwind CSS and Radix UI components.
-- **Dark Mode**: Theme switching enabled through next-themes.
-- **Iconography**: Lucide-react and react-icons for consistent icon usage.
-- **State Management**: Jotai for global state management.
-- **Drag & Resize**: Implemented using react-resizable-panels.
+🚀 Live Link: https://slack-nry.vercel.app/
 
-## Tech Stack
-- **Framework**: Next.js 15
-- **Frontend**: React 19, Tailwind CSS
-- **Real-time Data**: Convex
-- **State Management**: Jotai
-- **UI Components**: Radix UI
-- **Icons**: Lucide-react, react-icons
-- **Animation**: tailwindcss-animate
 
-## Installation
+![Slack real-time messaging platform built](/public/screenshot.webp 'A Slack-like real-time messaging platform built')
 
-1. Clone the repository:
-```bash
-$ git clone https://github.com/your-username/clone-slack.git
-$ cd clone-slack
+
+---
+
+## 🎯 Features
+- Real-time messaging
+- Emoji support
+- Rich text editor
+- User authentication
+- Responsive design
+- Theming with Tailwind CSS
+- Modular and scalable architecture
+
+---
+
+## 🚀 Technologies Used
+
+- **Next.js 15**: Framework for building React-based web applications.
+- **Convex**: Real-time backend for data synchronization.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **Radix UI**: Accessible React primitives.
+- **React Icons**: Icons for React applications.
+- **Jotai**: State management.
+- **Date-fns**: Utility library for date manipulation.
+- **Quill**: Rich text editor.
+- **Framer Motion**: Animations.
+
+---
+
+## 📂 Folder Structure
+
+```
+.git/                 # Git version control metadata
+.next/                # Compiled Next.js build files
+convex/               # Convex backend configuration
+node_modules/         # Project dependencies
+public/               # Static assets (images, icons, etc.)
+src/                  # Source code
+  ├── app/            # Pages and layouts for Next.js
+  ├── components/     # Reusable React components
+  ├── features/       # Feature-specific components and logic
+  ├── hooks/          # Custom React hooks
+  ├── lib/            # Utility functions and libraries
+middleware.ts         # Middleware for routing/authentication
+.env.local            # Environment variables
+.eslintrc.json        # ESLint configuration
+.gitignore            # Files and directories to ignore in Git
+components.json       # Component-specific configuration
+next-env.d.ts         # TypeScript declarations for Next.js
+next.config.ts        # Next.js configuration
+package.json          # Project metadata and dependencies
+postcss.config.mjs    # PostCSS configuration for Tailwind CSS
+README.md             # Project documentation (this file)
+sampleData.json       # Sample data for testing
+tailwind.config.ts    # Tailwind CSS configuration
+tsconfig.json         # TypeScript configuration
 ```
 
-2. Install dependencies:
-```bash
-$ npm install
+---
+
+## 🛠️ Dependencies
+Here are the key dependencies used in this project:
+
+### Production Dependencies
+```json
+{
+  "@auth/core": "^0.36.0",
+  "@convex-dev/auth": "^0.0.74",
+  "@emoji-mart/react": "^1.1.1",
+  "@radix-ui/react-avatar": "^1.1.1",
+  "@radix-ui/react-dialog": "^1.1.5",
+  "clsx": "^2.1.1",
+  "convex": "^1.17.0",
+  "date-fns": "^4.1.0",
+  "jotai": "^2.10.2",
+  "next": "15.0.3",
+  "react": "19.0.0",
+  "tailwindcss": "^3.4.1"
+}
 ```
 
-3. Set up environment variables:
-Create a `.env.local` file in the root directory and add the necessary keys.
+### Development Dependencies
+```json
+{
+  "@types/react": "^18",
+  "eslint": "^8",
+  "postcss": "^8",
+  "typescript": "^5"
+}
+```
+
+---
+
+## 🔐 Environment Variables
+
+Ensure you set up the following environment variables in your `.env.local` file:
+
 ```env
-NEXT_PUBLIC_API_URL=your-api-url
-AUTH_SECRET=your-auth-secret
+# Deployment used by `npx convex dev`
+CONVEX_DEPLOYMENT=<your_convex_deployment_url>
+
+# Public Convex URL
+NEXT_PUBLIC_CONVEX_URL=<your_public_convex_url>
 ```
 
-4. Run the development server:
-```bash
-$ npm run dev
-```
+Replace `<your_convex_deployment_url>` and `<your_public_convex_url>` with the appropriate values for your Convex deployment.
 
-Open [http://localhost:3000](http://localhost:3000) to view the app.
+---
 
-## Scripts
-- **dev**: Starts the development server
-- **build**: Builds the application for production
-- **start**: Starts the production server
-- **lint**: Lints the project
+## 🤝 Connect with Me
 
-## Folder Structure
-```
-/clone-slack
-├── components
-├── pages
-├── public
-├── styles
-├── utils
-└── convex
-```
+If you have any questions or want to collaborate, feel free to connect with me on LinkedIn:
 
-## Dependencies
-- **@auth/core**: Authentication core for the app.
-- **convex**: Real-time data handling.
-- **tailwindcss**: Utility-first CSS framework.
-- **radix-ui**: Accessible UI components.
-- **jotai**: State management library.
-- **lucide-react**: Icon library.
-- **react-resizable-panels**: Drag and resizable panels.
+[**My LinkedIn Profile**](https://www.linkedin.com/in/rehman-nry/)
 
-## Dev Dependencies
-- **eslint**: Linter for identifying code issues.
-- **typescript**: TypeScript support.
-- **postcss**: For Tailwind CSS processing.
+---
 
-## License
-This project is licensed under the MIT License.
-
+Happy Coding! 😊
